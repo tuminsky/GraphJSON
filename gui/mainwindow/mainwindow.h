@@ -1,8 +1,9 @@
 #pragma once
 
 #include <QMainWindow>
-
 #include "ui_mainwindow.h"
+
+#include <memory>
 
 class MainWindow : public QMainWindow
 {
@@ -14,4 +15,5 @@ public:
 
 private:
   Ui::MainWindow ui_;
+  std::unique_ptr<QGraphicsScene> scene_;
 };
