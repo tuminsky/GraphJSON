@@ -28,9 +28,6 @@ set(GUI_SRC
   gui/mainwindow/mainwindow.h
   gui/mainwindow/mainwindow.cpp
   gui/mainwindow/mainwindow.ui
-
-  gui/graph/node.h
-  gui/graph/node.cpp
 )
 
 set(SRC main.cpp
