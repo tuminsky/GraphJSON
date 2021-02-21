@@ -2,22 +2,22 @@
 
 #include <QGraphicsItem>
 
-#include <vector>
-#include <memory>
-
 namespace gui {
 
-class Edge;
+class Node;
 
-class Node : public QGraphicsItem
+class Edge : public QGraphicsItem
 {
-  QRectF pos_;
-  std::vector<Edge*> edges_;
+  Node* from_;
+  Node* to_;
+  QPointF from_point_;
+  QPointF to_point_;
+  const double arrow_size_;
 
 public:
-  explicit Node(const QRectF& pos, const QString& text = {});
+  explicit Edge(Node* from, Node* to);
 
-  void add_edge(Edge* edge);
+  void adjust();
 
   QRectF boundingRect() const override;
   void paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget = nullptr) override;

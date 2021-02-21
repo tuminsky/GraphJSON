@@ -31,6 +31,9 @@ set(GUI_SRC
 
   gui/graph/node.h
   gui/graph/node.cpp
+
+  gui/graph/edge.h
+  gui/graph/edge.cpp
 )
 
 set(SRC main.cpp

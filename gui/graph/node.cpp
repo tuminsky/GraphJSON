@@ -4,13 +4,13 @@
 #include <QLabel>
 #include <QPainter>
 
+#include "edge.h"
+
 namespace gui {
 
 Node::Node(const QRectF& pos, const QString& text)
   : pos_(pos)
 {
-  setFlag(ItemIsMovable);
-
   auto proxy = new QGraphicsProxyWidget(this);
   auto label = new QLabel(text);
 
@@ -26,15 +26,22 @@ Node::Node(const QRectF& pos, const QString& text)
   proxy->setPos(node_center);
 }
 
+
+void Node::add_edge(Edge* edge)
+{
+  edges_.push_back(edge);
+  edge->adjust();
+}
+
+
 QRectF Node::boundingRect() const { return pos_; }
 
 void Node::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
 {
-  QPen pen;
-  pen.setWidth(2);
-
-  painter->setPen(pen);
+  painter->setPen(Qt::NoPen);
+  painter->setBrush(Qt::lightGray);
   painter->drawEllipse(pos_);
 }
+
 
 } // namespace gui
