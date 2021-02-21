@@ -10,10 +10,10 @@ class MainWindow : public QMainWindow
   Q_OBJECT
 
 public:
-  MainWindow(QWidget *parent = nullptr);
-  ~MainWindow();
+  explicit MainWindow(QWidget* parent = nullptr);
+  ~MainWindow() = default;
 
 private:
   Ui::MainWindow ui_;
-  std::unique_ptr<QGraphicsScene> scene_;
+  QGraphicsScene* scene_;
 };
