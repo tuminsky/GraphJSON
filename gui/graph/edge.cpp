@@ -23,9 +23,12 @@ Edge::Edge(Node* from, Node* to)
   adjust();
 }
 
-const Node* Edge::source_node() const { return from_; }
+int Edge::type() const { return Type; }
 
-const Node* Edge::dest_node() const { return to_; }
+Node* Edge::source_node() { return from_; }
+
+Node* Edge::dest_node() { return to_; }
+
 
 void Edge::adjust()
 {

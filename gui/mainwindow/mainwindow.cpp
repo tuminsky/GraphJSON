@@ -24,5 +24,4 @@ MainWindow::MainWindow(QWidget *parent)
   scene_->addItem(node1);
   scene_->addItem(node2);
   scene_->addItem(edge);
-
 }
