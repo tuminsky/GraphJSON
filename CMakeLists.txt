@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(dev_os_homework2 LANGUAGES CXX)
+project(dev_os_homework_2 LANGUAGES CXX)
 
 add_executable(dev_os_homework)
 
@@ -28,6 +28,9 @@ set(GUI_SRC
   gui/mainwindow/mainwindow.h
   gui/mainwindow/mainwindow.cpp
   gui/mainwindow/mainwindow.ui
+
+  gui/customgraphicsview/customgraphicsview.h
+  gui/customgraphicsview/customgraphicsview.cpp
 
   gui/graph/node.h
   gui/graph/node.cpp
