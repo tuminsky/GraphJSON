@@ -36,7 +36,7 @@ set(GUI_SRC
 )
 
 set(UTIL_SRC
-  util/keysmanager.cpp
+  util/keysmanager/keysmanager.cpp
 )
 
 set(SRC main.cpp

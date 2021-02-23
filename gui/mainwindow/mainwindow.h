@@ -5,6 +5,8 @@
 
 #include <memory>
 
+namespace gui { class Node; }
+
 class MainWindow : public QMainWindow
 {
   Q_OBJECT
@@ -15,5 +17,8 @@ class MainWindow : public QMainWindow
 public:
   explicit MainWindow(QWidget* parent = nullptr);
   ~MainWindow() = default;
+
+private slots:
+  void open_clicked();
 
 };
