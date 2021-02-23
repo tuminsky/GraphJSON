@@ -10,6 +10,12 @@ addons:
       - g++-9
       - qt5-default
 
+env:
+  - MATRIX_EVAL="CC=gcc-9 && CXX=g++-9"
+
+before_install:
+  - eval "${MATRIX_EVAL}"
+
 script:
   - mkdir build
   - cd build
