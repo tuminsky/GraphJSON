@@ -21,8 +21,8 @@ MainWindow::MainWindow(QWidget *parent)
   connect(ui_.aOpen, &QAction::triggered,
           this, &MainWindow::open_clicked);
 
-  auto node1 = new gui::Node({"node1"});
-  auto node2 = new gui::Node({"node2"});
+  auto node1 = new gui::Node(0, 0, {"node1"});
+  auto node2 = new gui::Node(0, 200, {"node2"});
   auto edge = new gui::Edge(node1, node2);
 
   scene_->addItem(node1);
