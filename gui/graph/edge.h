@@ -17,6 +17,9 @@ class Edge : public QGraphicsItem
 public:
   explicit Edge(Node* from, Node* to);
 
+  const Node* source_node() const;
+  const Node* dest_node() const;
+
   void adjust();
 
   QRectF boundingRect() const override;

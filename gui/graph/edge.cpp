@@ -1,9 +1,9 @@
 #include "edge.h"
+#include "node.h"
 
 #include <QPainter>
 
 #include <cmath>
-#include "node.h"
 
 constexpr double pi() { return std::atan(1) * 4; }
 
@@ -12,6 +12,9 @@ namespace gui {
 Edge::Edge(Node* from, Node* to)
   : from_(from), to_(to), arrow_size_(10.0)
 {
+  if (from_ == to_)
+    return;
+
   if (from_)
     from_->add_edge(this);
   if (to_)
@@ -19,6 +22,10 @@ Edge::Edge(Node* from, Node* to)
 
   adjust();
 }
+
+const Node* Edge::source_node() const { return from_; }
+
+const Node* Edge::dest_node() const { return to_; }
 
 void Edge::adjust()
 {
@@ -84,7 +91,7 @@ void Edge::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWid
   // draw the arrow
   auto angle = std::acos(line.dx() / line.length());
 
-  if (line.dy() >= 0)
+  if (line.dy() >= 0.)
     angle = 2 * pi() - angle;
 
   const auto arrow_p1 = to_point_ + QPointF{
