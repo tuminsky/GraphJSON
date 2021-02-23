@@ -3,7 +3,6 @@
 #include <QWheelEvent>
 #include <QGraphicsItem>
 
-#include "gui/graph/node.h"
 
 namespace gui {
 

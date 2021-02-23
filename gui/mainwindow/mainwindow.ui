@@ -16,7 +16,7 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="CustomGraphicsView" name="graphicsView"/>
+     <widget class="gui::CustomGraphicsView" name="graphicsView"/>
     </item>
    </layout>
   </widget>
@@ -46,7 +46,7 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>CustomGraphicsView</class>
+   <class>gui::CustomGraphicsView</class>
    <extends>QGraphicsView</extends>
    <header>gui/customgraphicsview/customgraphicsview.h</header>
   </customwidget>
