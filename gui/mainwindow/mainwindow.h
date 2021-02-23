@@ -16,9 +16,4 @@ public:
   explicit MainWindow(QWidget* parent = nullptr);
   ~MainWindow() = default;
 
-private slots:
-  void open_clicked();
-
-private:
-  void iterate_json(const QJsonObject& json_obj);
 };

@@ -11,11 +11,11 @@ class Edge;
 
 class Node : public QGraphicsItem
 {
-  QRectF pos_;
+  QRectF shape_;
   std::vector<Edge*> edges_;
 
 public:
-  explicit Node(const QRectF& pos, const QString& text = {});
+  explicit Node(double x, double y, const QString& text = {});
 
   void add_edge(Edge* edge);
 
