@@ -19,6 +19,6 @@ public:
   ~MainWindow() = default;
 
 private slots:
-  void open_clicked();
+//  void open_clicked();
 
 };
