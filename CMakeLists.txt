@@ -25,22 +25,23 @@ set_target_properties(dev_os_homework PROPERTIES
 )
 
 set(GUI_SRC
-  gui/mainwindow/mainwindow.h
   gui/mainwindow/mainwindow.cpp
   gui/mainwindow/mainwindow.ui
 
-  gui/customgraphicsview/customgraphicsview.h
   gui/customgraphicsview/customgraphicsview.cpp
 
-  gui/graph/node.h
   gui/graph/node.cpp
 
-  gui/graph/edge.h
   gui/graph/edge.cpp
+)
+
+set(UTIL_SRC
+  util/keysmanager.cpp
 )
 
 set(SRC main.cpp
   ${GUI_SRC}
+  ${UTIL_SRC}
 )
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
