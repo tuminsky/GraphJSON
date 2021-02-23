@@ -1,18 +1,19 @@
 #include "node.h"
+#include "edge.h"
 
 #include <QGraphicsProxyWidget>
 #include <QLabel>
 #include <QPainter>
 
-#include "edge.h"
-
 namespace gui {
 
-Node::Node(double x, double y, const QString& text)
-  : shape_(x, y, 0, 0)
+Node::Node(QPointF pos, const QStringList& text)
+  : shape_(pos.x(), pos.y(), 0, 0)
 {
+//  setFlag(ItemIsMovable);
+
   auto proxy = new QGraphicsProxyWidget(this);
-  auto label = new QLabel(text);
+  auto label = new QLabel(text.join('\n'));
 
   auto font = label->font();
   font.setPointSize(16);
@@ -34,10 +35,9 @@ Node::Node(double x, double y, const QString& text)
 }
 
 
-void Node::add_edge(Edge* edge)
-{
-  edges_.push_back(edge);
-}
+void Node::add_edge(Edge* edge) { edges_.push_back(edge); }
+
+const std::vector<Edge*> Node::edges() const { return edges_; }
 
 
 QRectF Node::boundingRect() const { return shape_; }
