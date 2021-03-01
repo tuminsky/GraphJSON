@@ -1,0 +1,11 @@
+{
+  "name": "test_name",
+  "items": {
+      "name": "item1",
+      "tests": [
+        { "test": "str1" },
+        { "test": "str2" }
+      ]
+  }
+  
+}
