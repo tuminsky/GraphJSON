@@ -1,16 +1,10 @@
 #include "customgraphicsview.h"
-#include "gui/graph/node.h"
 
 #include <QWheelEvent>
-#include <QGraphicsItem>
 
 namespace gui {
 
-CustomGraphicsView::CustomGraphicsView(QWidget* parent)
-  : QGraphicsView(parent)
-{
-  setRenderHint(QPainter::Antialiasing);
-}
+CustomGraphicsView::CustomGraphicsView(QWidget* parent) : QGraphicsView(parent) { }
 
 void CustomGraphicsView::wheelEvent(QWheelEvent* event)
 {
