@@ -1,8 +1,12 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(dev_os_homework2 LANGUAGES CXX)
+project(dev_os_homework_2 LANGUAGES CXX)
 
-add_executable(dev_os_homework)
+if (WIN32)
+  set(EXEC_FLAG WIN32)
+endif()
+
+add_executable(dev_os_homework ${EXEC_FLAG})
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
   message("Debug mode")
@@ -25,19 +29,23 @@ set_target_properties(dev_os_homework PROPERTIES
 )
 
 set(GUI_SRC
-  gui/mainwindow/mainwindow.h
   gui/mainwindow/mainwindow.cpp
   gui/mainwindow/mainwindow.ui
 
-  gui/graph/node.h
+  gui/customgraphicsview/customgraphicsview.cpp
+
   gui/graph/node.cpp
 
-  gui/graph/edge.h
   gui/graph/edge.cpp
+)
+
+set(UTIL_SRC
+  util/keysmanager/keysmanager.cpp
 )
 
 set(SRC main.cpp
   ${GUI_SRC}
+  ${UTIL_SRC}
 )
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
