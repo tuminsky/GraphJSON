@@ -46,7 +46,7 @@ set(SRC main.cpp
 )
 
 find_package(Qt5 COMPONENTS Widgets Svg REQUIRED)
-find_package(Boost COMPONENTS graph REQUIRED)
+find_package(Boost REQUIRED)
 
 target_include_directories(dev_os_homework PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${Boost_INCLUDE_DIR})
 target_sources(dev_os_homework PRIVATE ${SRC})
