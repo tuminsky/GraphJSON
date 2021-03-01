@@ -1,9 +1,9 @@
 #include "edge.h"
+#include "node.h"
 
 #include <QPainter>
 
 #include <cmath>
-#include "node.h"
 
 constexpr double pi() { return std::atan(1) * 4; }
 
@@ -12,6 +12,9 @@ namespace gui {
 Edge::Edge(Node* from, Node* to)
   : from_(from), to_(to), arrow_size_(10.0)
 {
+  if (from_ == to_)
+    return;
+
   if (from_)
     from_->add_edge(this);
   if (to_)
@@ -20,23 +23,25 @@ Edge::Edge(Node* from, Node* to)
   adjust();
 }
 
+Node* Edge::source_node() { return from_; }
+
+Node* Edge::dest_node() { return to_; }
+
+
 void Edge::adjust()
 {
   if (!from_ || !to_)
     return;
 
-  const auto source_br = from_->boundingRect();
-  const auto dest_br = to_->boundingRect();
-
   // set start and end points
   const QLineF line(
-    source_br.center(), // start
-    dest_br.center()    // end
+    mapFromItem(from_, 0, 0), // start
+    mapFromItem(to_, 0, 0)    // end
   );
 
   // get radius
-  const auto source_radius = source_br.width() / 2;
-  const auto dest_radius = dest_br.width() / 2;
+  const auto source_radius = from_->boundingRect().width() / 2;
+  const auto dest_radius = to_->boundingRect().width() / 2;
 
   // calculate offset points from center of nodes
   const QPointF source_offset(
@@ -68,7 +73,7 @@ QRectF Edge::boundingRect() const
   return {from_point_, size};
 }
 
-void Edge::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWidget* widget)
+void Edge::paint(QPainter* painter, const QStyleOptionGraphicsItem* /*option*/, QWidget* /*widget*/)
 {
   if (!from_ || !to_)
     return;
@@ -84,7 +89,7 @@ void Edge::paint(QPainter* painter, const QStyleOptionGraphicsItem* option, QWid
   // draw the arrow
   auto angle = std::acos(line.dx() / line.length());
 
-  if (line.dy() >= 0)
+  if (line.dy() >= 0.)
     angle = 2 * pi() - angle;
 
   const auto arrow_p1 = to_point_ + QPointF{

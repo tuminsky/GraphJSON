@@ -1,9 +1,8 @@
 #include "customgraphicsview.h"
+#include "gui/graph/node.h"
 
 #include <QWheelEvent>
 #include <QGraphicsItem>
-
-#include "gui/graph/node.h"
 
 namespace gui {
 
@@ -15,11 +14,12 @@ CustomGraphicsView::CustomGraphicsView(QWidget* parent)
 
 void CustomGraphicsView::wheelEvent(QWheelEvent* event)
 {
-  if(event->delta() > 0)
+  if(event->angleDelta().y() > 0)
     scale(1.25, 1.25);
   else
     scale(0.8, 0.8);
 }
+
 
 
 
