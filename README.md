@@ -1,4 +1,5 @@
-# CrossplatformLab1
+# CrossplatformLab2
 #### Build
-* WINDOWS: [![AppVeyor](https://img.shields.io/appveyor/build/tuminskiy/CrossplatformLab2)](https://ci.appveyor.com/project/tuminskiy/crossplatformlab2)
-* LINUX: [![Travis (.org)](https://img.shields.io/travis/tuminskiy/CrossplatformLab2)](https://travis-ci.org/github/tuminskiy/CrossplatformLab2/)
+* WINDOWS: [![AppVeyor](https://img.shields.io/appveyor/job/build/tuminskiy/CrossplatformLab2/Image:%20Visual%20Studio%202019)](https://img.shields.io/appveyor/job/build/tuminskiy/CrossplatformLab2/Image:%20Visual%20Studio%202019)
+* LINUX: [![AppVeyor](https://img.shields.io/appveyor/job/build/tuminskiy/CrossplatformLab2/Image:%20Ubuntu2004)](https://img.shields.io/appveyor/job/build/tuminskiy/CrossplatformLab2/Image:%20Ubuntu2004)
+

@@ -1,11 +1,33 @@
 image:
   - Visual Studio 2019
+  - Ubuntu2004
 
-install:
-  - set PATH=C:\Qt\Tools\mingw810_32\bin;%PATH%
+for:
+  -
+    matrix:
+      only:
+        - image: Visual Studio 2019
 
-build_script:
+    install:
+      - set PATH=C:\Qt\Tools\mingw810_32\bin;%PATH%
+
+    build_script:
+      - cmake -G "MinGW Makefiles" -D Qt5_DIR=C:\Qt\5.15.2\mingw81_32\lib\cmake\Qt5 ..
+      - cmake --build .
+  
+  -
+    matrix:
+      only:
+        - image: Ubuntu2004
+    
+    install:
+      - sudo apt update
+      - sudo apt install -y mesa-common-dev libglu1-mesa-dev
+
+    build_script:
+      - cmake -D Qt5_DIR=$HOME/Qt/5.14.2/gcc_64/lib/cmake/Qt5 ..
+      - cmake --build .
+
+before_build:
   - mkdir build
   - cd build
-  - cmake -G "MinGW Makefiles" -D Qt5_DIR=C:\Qt\5.15.2\mingw81_32\lib\cmake\Qt5 ..
-  - cmake --build .
