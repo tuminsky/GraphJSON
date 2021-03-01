@@ -17,9 +17,6 @@ class Edge : public QGraphicsItem
 public:
   explicit Edge(Node* from, Node* to);
 
-  enum { Type = UserType + 1 };
-  int type() const override;
-
   Node* source_node();
   Node* dest_node();
 

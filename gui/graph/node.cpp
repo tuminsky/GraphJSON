@@ -10,11 +10,8 @@
 namespace gui {
 
 Node::Node(const QStringList& text)
-  : shape_(0, 0, 0, 0)
+  : shape_(-150, -150, 300, 300)
 {
-  setFlag(ItemIsMovable);
-  setFlag(ItemSendsGeometryChanges);
-
   auto proxy = new QGraphicsProxyWidget(this);
   auto label = new QLabel(text.join('\n'));
 
@@ -24,17 +21,10 @@ Node::Node(const QStringList& text)
   label->setAttribute(Qt::WA_TranslucentBackground);
   proxy->setWidget(label);
 
-  prepareGeometryChange();
-
-  const auto diametr = std::max(label->rect().width(), label->rect().height());
-  shape_.setX(-(diametr / 2.0));
-  shape_.setY(-(diametr / 2.0));
-  shape_.setWidth(diametr);
-  shape_.setHeight(diametr);
-
-  auto node_center = boundingRect().center();
-  node_center.rx() -= label->rect().width() / 2;
-  node_center.ry() -= label->rect().height() / 2;
+  const auto label_rect = label->rect();
+  QPointF node_center(0.0, 0.0);
+  node_center.rx() -= label_rect.width() / 2.0;
+  node_center.ry() -= label_rect.height() / 2.0;
 
   proxy->setPos(node_center);
 }

@@ -3,8 +3,6 @@
 #include <QMainWindow>
 #include "ui_mainwindow.h"
 
-#include <memory>
-
 namespace gui { class Node; }
 
 class MainWindow : public QMainWindow
@@ -19,6 +17,9 @@ public:
   ~MainWindow() = default;
 
 private slots:
-//  void open_clicked();
+  void open_clicked();
 
+private:
+  void json_to_node(const QJsonObject& obj, gui::Node* parent = nullptr);
+  QPointF calculate_valid_pos(const QPointF& hint, double new_node_radius);
 };
