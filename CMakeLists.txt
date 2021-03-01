@@ -33,14 +33,11 @@ set(GUI_SRC
   gui/mainwindow/mainwindow.ui
 
   gui/customgraphicsview/customgraphicsview.cpp
-
-  gui/graph/node.cpp
-
-  gui/graph/edge.cpp
 )
 
 set(UTIL_SRC
   util/keysmanager/keysmanager.cpp
+  util/graph/graph.cpp
 )
 
 set(SRC main.cpp
@@ -48,8 +45,9 @@ set(SRC main.cpp
   ${UTIL_SRC}
 )
 
-find_package(Qt5 COMPONENTS Widgets REQUIRED)
+find_package(Qt5 COMPONENTS Widgets Svg REQUIRED)
+find_package(Boost COMPONENTS graph REQUIRED)
 
-target_include_directories(dev_os_homework PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(dev_os_homework PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${Boost_INCLUDE_DIR})
 target_sources(dev_os_homework PRIVATE ${SRC})
-target_link_libraries(dev_os_homework PRIVATE Qt5::Core Qt5::Widgets)
+target_link_libraries(dev_os_homework PRIVATE Qt5::Widgets Qt5::Svg ${Boost_LIBRARIES})
