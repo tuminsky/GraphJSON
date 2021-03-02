@@ -10,9 +10,9 @@
        "age": 29,
        "secretIdentity": "Dan Jukes",
        "powers": [
-         { "power": "Radiation resistance" },
-         { "power": "Turning tiny" },
-         { "power": "Radiation blast" }
+         "Radiation resistance",
+         "Turning tiny",
+         "Radiation blast"
        ]
      },
      {
@@ -20,9 +20,13 @@
        "age": 39,
        "secretIdentity": "Jane Wilson",
        "powers": [
-         { "power": "Million tonne punch" },
-         { "power": "Damage resistance" },
-         { "power": "Superhuman reflexes" }
+         "Million tonne punch",
+         "Damage resistance",
+         "Superhuman reflexes",
+         {
+           "name": "obj1",
+           "value": "somevalue"
+         }
        ]
      },
      {
@@ -30,11 +34,12 @@
        "age": 1000000,
        "secretIdentity": "Unknown",
        "powers": [
-         { "power": "Immortality" },
-         { "power": "Heat Immunity" },
-         { "power": "Inferno" },
-         { "power": "Teleportation" },
-         { "power": "Interdimensional travel" }
+         "Immortality",
+         "Heat Immunity",
+         "Inferno",
+         "Teleportation",
+         "Interdimensional travel",
+         ["test1", "test2"]
        ]
      }
    ]
