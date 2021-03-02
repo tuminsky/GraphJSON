@@ -6,7 +6,6 @@
 #include <QJsonObject>
 #include <QProcess>
 #include <QGraphicsSvgItem>
-#include <fstream>
 
 MainWindow::MainWindow(QWidget *parent)
   : QMainWindow(parent)
@@ -50,10 +49,6 @@ void MainWindow::show_graph(const util::graph_t& graph)
 
   std::ostringstream os;
   os << graph;
-
-  std::ofstream fout;
-  fout.open("D:\\Programming\\Qt\\Projects\\dev_os_homework_2\\qwe.txt");
-  fout << graph;
 
   const auto str = os.str();
 
