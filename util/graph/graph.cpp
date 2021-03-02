@@ -7,12 +7,17 @@
 #include <boost/graph/graphviz.hpp>
 
 #include <limits>
+#include <regex>
 
 namespace util {
 
-std::ostream& operator<< (std::ostream& os, const graph_t& graph) {
+std::ostream& operator<< (std::ostream& os, const graph_t& graph)
+{
   const auto vertex_writer = [&](std::ostream& os, const descriptor_t& vertex) {
-    os << " [label=\"" << boost::get(boost::vertex_bundle, graph)[vertex] << "\"]";
+    os << " [label=\""
+       << std::regex_replace(boost::get(boost::vertex_bundle, graph)[vertex],
+                             std::regex{"\""},"\\\"")
+       << "\"]";
   };
 
   boost::write_graphviz(os, graph, vertex_writer);
@@ -26,8 +31,8 @@ QString to_string(const QJsonValue& value)
   else if (value.isString())   return value.toString();
   else if (value.isDouble())   return QString::number(value.toDouble());
   else if (value.isNull())     return "null";
-  else if (value.isArray())    return QJsonDocument{value.toArray()}.toJson(QJsonDocument::Compact).replace("\"", "\\\"");
-  else  /* value.isObject() */ return QJsonDocument{value.toObject()}.toJson(QJsonDocument::Compact).replace("\"", "\\\"");
+  else if (value.isArray())    return QJsonDocument{value.toArray()}.toJson(QJsonDocument::Compact);
+  else  /* value.isObject() */ return QJsonDocument{value.toObject()}.toJson(QJsonDocument::Compact);
 }
 
 void json_to_graph_impl(const QJsonValue& value, graph_t& graph, descriptor_t parent_vertex)
