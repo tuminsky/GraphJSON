@@ -1,13 +1,16 @@
-#include "gui/mainwindow/mainwindow.h"
-
 #include <QApplication>
+#include <QQmlApplicationEngine>
 
-int main(int argc, char *argv[])
+#include "controller/controller.h"
+
+int main(int argc, char* argv[])
 {
-  QApplication a(argc, argv);
+  QApplication app(argc, argv);
 
-  MainWindow w;
-  w.show();
+  qmlRegisterType<util::Controller>("util.controller", 1, 0, "Controller");
 
-  return a.exec();
+  QQmlApplicationEngine engine;
+  engine.load(QUrl("qrc:/mainwindow.qml"));
+
+  return app.exec();
 }

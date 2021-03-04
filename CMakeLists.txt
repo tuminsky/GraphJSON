@@ -17,6 +17,7 @@ endif()
 set_target_properties(dev_os_homework PROPERTIES
   AUTOMOC ON
   AUTOUIC ON
+  AUTORCC ON
 
   CXX_STANDARD 17
   CXX_STANDARD_REQUIRED ON
@@ -28,24 +29,15 @@ set_target_properties(dev_os_homework PROPERTIES
   RUNTIME_OUTPUT_DIRECTORY_RELEASE "${CMAKE_BINARY_DIR}/bin/release/"
 )
 
-set(GUI_SRC
-  gui/mainwindow/mainwindow.cpp
-  gui/mainwindow/mainwindow.ui
-
-  gui/customgraphicsview/customgraphicsview.cpp
+set(SRC
+  main.cpp
+  keysmanager/keysmanager.cpp
+  graph/graph.cpp
+  controller/controller.cpp
+  resources/qml.qrc
 )
 
-set(UTIL_SRC
-  util/keysmanager/keysmanager.cpp
-  util/graph/graph.cpp
-)
-
-set(SRC main.cpp
-  ${GUI_SRC}
-  ${UTIL_SRC}
-)
-
-find_package(Qt5 COMPONENTS Widgets Svg REQUIRED)
+find_package(Qt5 COMPONENTS Widgets Qml Quick REQUIRED)
 find_package(Boost REQUIRED)
 
 find_program(GRAPHVIZ_FOUND "dot")
@@ -56,4 +48,4 @@ endif()
 
 target_include_directories(dev_os_homework PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${Boost_INCLUDE_DIR})
 target_sources(dev_os_homework PRIVATE ${SRC})
-target_link_libraries(dev_os_homework PRIVATE Qt5::Widgets Qt5::Svg ${Boost_LIBRARIES})
+target_link_libraries(dev_os_homework PRIVATE Qt5::Widgets Qt5::Qml Qt5::Quick ${Boost_LIBRARIES})
