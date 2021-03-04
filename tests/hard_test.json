@@ -12,7 +12,14 @@
        "powers": [
          "Radiation resistance",
          "Turning tiny",
-         "Radiation blast"
+         "Radiation blast",
+         [
+            "test power",
+            {
+              "hello": "world",
+              "quest": [ 42 ]
+            }
+         ]
        ]
      },
      {

@@ -26,3 +26,15 @@ graph_t json_to_graph(const QJsonObject& root);
 std::ostream& operator<< (std::ostream& os, const graph_t& graph);
 
 } // namespace util
+
+namespace util::detail {
+
+QString to_string(const QJsonValue& value);
+
+void json_to_graph_impl(const QJsonValue& value, graph_t& graph, descriptor_t parent_vertex);
+
+void json_to_graph_impl(const QJsonObject& obj, graph_t& graph, descriptor_t parent_vertex);
+
+void json_to_graph_impl(const QJsonArray& array, graph_t& graph, descriptor_t parent_vertex);
+
+} // namespace util::detail
