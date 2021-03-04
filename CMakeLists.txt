@@ -48,6 +48,12 @@ set(SRC main.cpp
 find_package(Qt5 COMPONENTS Widgets Svg REQUIRED)
 find_package(Boost REQUIRED)
 
+find_program(GRAPHVIZ_FOUND "dot")
+
+if (!GRAPHVIZ_FOUND)
+  message(FATAL_ERROR "Graphviz not found. CMake will exit.")
+endif()
+
 target_include_directories(dev_os_homework PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${Boost_INCLUDE_DIR})
 target_sources(dev_os_homework PRIVATE ${SRC})
 target_link_libraries(dev_os_homework PRIVATE Qt5::Widgets Qt5::Svg ${Boost_LIBRARIES})
