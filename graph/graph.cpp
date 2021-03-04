@@ -1,5 +1,5 @@
 #include "graph.h"
-#include "util/keysmanager/keysmanager.h"
+#include "keysmanager/keysmanager.h"
 
 #include <QJsonDocument>
 #include <QJsonArray>
