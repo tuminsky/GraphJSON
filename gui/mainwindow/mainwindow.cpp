@@ -38,13 +38,18 @@ void MainWindow::open_clicked()
     return;
   }
 
+  ui_.statusbar->showMessage("Start parsing json");
   const auto graph = util::json_to_graph(json_doc.object());
 
+  ui_.statusbar->showMessage("Start drawing graph");
   show_graph(graph);
+
+  ui_.statusbar->clearMessage();
 }
 
 void MainWindow::show_graph(const util::graph_t& graph)
 {
+
   using namespace util;
 
   std::ostringstream os;
