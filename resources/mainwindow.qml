@@ -4,14 +4,16 @@ import QtQuick.Dialogs 1.3
 import util.controller 1.0
 
 ApplicationWindow {
+  id: appWin
   visible: true
-  width: 700
-  height: 900
+  width: 900
+  height: 800
 
   Controller {
     id: controller
     onFailedOpen: messageDialogFile.open()
     onJsonFailed: messageDialogFile.open()
+    onSvgChanged: graphView.source = "data:image/svg+xml;utf8," + controller.svg
   }
 
   MessageDialog {
@@ -43,28 +45,28 @@ ApplicationWindow {
 
     nameFilters: "*.json"
 
-    onAccepted: {
-      let file_path = fileDialog.fileUrl.toString().substr(8);
-      controller.json_to_graph(file_path)
-    }
+    onAccepted: controller.json_to_graph(fileDialog.fileUrl.toString());
   }
 
   ScrollView {
+    id: scrollView
     anchors.fill: parent
 
     ScrollBar.horizontal.policy: Qt.ScrollBarAlwaysOn
     ScrollBar.vertical.policy: Qt.ScrollBarAlwaysOn
 
+    ScrollBar.horizontal.interactive: true
+    ScrollBar.vertical.interactive: true
+
     Image {
       id: graphView
       anchors.fill: parent
-
-      source: "data:image/svg+xml;utf8," + controller.svg
+      focus: true
 
       MouseArea {
         anchors.fill: parent
 
-        onWheel: graphView.scale *= (wheel.angleDelta.y > 0) ? 1.25 : 0.8;
+        onWheel: graphView.scale *= (wheel.angleDelta.y > 0) ? 1.25 : 0.75;
       }
     }
   }

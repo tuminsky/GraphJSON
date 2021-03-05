@@ -3,11 +3,19 @@
 #include <QJsonDocument>
 #include <QFile>
 #include <QProcess>
+#include <QUrl>
+#include <QDir>
 
 namespace util {
 
-void Controller::json_to_graph(const QString& json_file)
+void Controller::json_to_graph(const QString& path)
 {
+  const QUrl url(path);
+  const QString json_file = url.isLocalFile()
+      ? QDir::toNativeSeparators(url.toLocalFile())
+      : path;
+
+
   QFile file(json_file);
   if (!file.open(QFile::ReadOnly)) {
     emit failedOpen();

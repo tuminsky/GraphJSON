@@ -15,7 +15,7 @@ class Controller : public QObject
   Q_PROPERTY(QString svg READ svg NOTIFY svgChanged)
 
 public:
-  Q_INVOKABLE void json_to_graph(const QString& json_file);
+  Q_INVOKABLE void json_to_graph(const QString& path);
 
   QString svg() const { return svg_; }
 
