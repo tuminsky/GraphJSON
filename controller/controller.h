@@ -1,6 +1,9 @@
 #pragma once
 
 #include <QObject>
+#include <QProcess>
+
+#include <memory>
 
 #include "graph/graph.h"
 
@@ -23,6 +26,7 @@ signals:
   void failedOpen();
   void jsonFailed();
   void svgChanged();
+  void graphvizFailed();
 
 private:
   void graph_to_svg(const graph_t& graph);
