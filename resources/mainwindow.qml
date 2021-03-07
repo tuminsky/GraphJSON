@@ -11,21 +11,28 @@ ApplicationWindow {
 
   Controller {
     id: controller
-    onFailedOpen: messageDialogFile.open()
-    onJsonFailed: messageDialogFile.open()
+
+    onFailedOpen: {
+      msgDialog.text = "Failed open file";
+      msgDialog.open()
+    }
+
+    onJsonFailed: {
+      msgDialog.text = "Incorrect format json";
+      msgDialog.open()
+    }
+
+    onGraphvizFailed: {
+      msgDialog.text = "Graphviz not found"
+      msgDialog.open();
+    }
+
     onSvgChanged: graphView.source = "data:image/svg+xml;utf8," + controller.svg
   }
 
   MessageDialog {
-    id: messageDialogFile
+    id: msgDialog
     title: "Error"
-    text: "Failed open file"
-  }
-
-  MessageDialog {
-    id: messageDialogJson
-    title: "Error"
-    text: "Incorrect format json"
   }
 
   menuBar: MenuBar {

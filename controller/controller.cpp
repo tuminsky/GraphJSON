@@ -41,16 +41,23 @@ void Controller::graph_to_svg(const graph_t& graph)
   QProcess graphviz;
   graphviz.setProcessChannelMode(QProcess::MergedChannels);
   graphviz.start("dot", {"-Tsvg"});
+  const auto started = graphviz.waitForStarted(5000/*msecs*/);
+
+  if (!started) {
+    emit graphvizFailed();
+    return;
+  }
+
   graphviz.write(str.data(), static_cast<int>(str.size()));
 
   svg_.clear();
 
-  while (graphviz.waitForReadyRead(100))
-      svg_.append(graphviz.readAll());
+  while (graphviz.waitForReadyRead(3000/*msecs*/))
+    svg_.append(graphviz.readAll());
 
+  graphviz.kill();
+  
   emit svgChanged();
 }
-
-
 
 } // namespace util
