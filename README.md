@@ -1,4 +1,4 @@
-# CrossplatformLab2
+# GraphJSON
 
 Draws a directed object relationship graph in a JSON file.
 
