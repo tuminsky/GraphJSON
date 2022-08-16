@@ -1,12 +1,12 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(dev_os_homework_2 LANGUAGES CXX)
+project(GraphJSON LANGUAGES CXX)
 
 if (WIN32)
   set(EXEC_FLAG WIN32)
 endif()
 
-add_executable(dev_os_homework ${EXEC_FLAG})
+add_executable(${PROJECT_NAME} ${EXEC_FLAG})
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
   message("Debug mode")
@@ -14,7 +14,7 @@ else()
   message("Release mode")
 endif()
 
-set_target_properties(dev_os_homework PROPERTIES
+set_target_properties(${PROJECT_NAME} PROPERTIES
   AUTOMOC ON
   AUTOUIC ON
   AUTORCC ON
@@ -37,7 +37,7 @@ set(SRC
   resources/qml.qrc
 )
 
-find_package(Qt5 COMPONENTS Widgets Qml Quick REQUIRED)
+find_package(Qt6 COMPONENTS Widgets Qml Quick REQUIRED)
 find_package(Boost REQUIRED)
 
 find_program(GRAPHVIZ_FOUND "dot")
@@ -46,6 +46,6 @@ if (!GRAPHVIZ_FOUND)
   message(FATAL_ERROR "Graphviz not found. CMake will exit.")
 endif()
 
-target_include_directories(dev_os_homework PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${Boost_INCLUDE_DIR})
-target_sources(dev_os_homework PRIVATE ${SRC})
-target_link_libraries(dev_os_homework PRIVATE Qt5::Widgets Qt5::Qml Qt5::Quick ${Boost_LIBRARIES})
+target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ${Boost_INCLUDE_DIR})
+target_sources(${PROJECT_NAME} PRIVATE ${SRC})
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Widgets Qt6::Qml Qt6::Quick ${Boost_LIBRARIES})
