@@ -9,11 +9,11 @@ for:
         - image: Visual Studio 2019
 
     install:
-      - set PATH=C:\Qt\Tools\mingw810_32\bin;%PATH%
+      - set PATH=C:\Qt\Tools\mingw810_64\bin;%PATH%
       - set Boost_ROOT=C:\Libraries\boost_1_73_0
 
     build_script:
-      - cmake -G "MinGW Makefiles" -D Qt5_DIR=C:\Qt\5.15.2\mingw81_32\lib\cmake\Qt5 ..
+      - cmake -G "MinGW Makefiles" -D Qt6_DIR=C:\Qt\6.3.1\mingw_64\lib\cmake\Qt6 ..
       - cmake --build .
   
   -
@@ -28,7 +28,7 @@ for:
       - sudo apt install -y graphviz
 
     build_script:
-      - cmake -D Qt5_DIR=$HOME/Qt/5.14.2/gcc_64/lib/cmake/Qt5 ..
+      - cmake -D Qt6_DIR=$HOME/Qt/6.3.1/gcc_64/lib/cmake/Qt6 ..
       - cmake --build .
 
 before_build:
